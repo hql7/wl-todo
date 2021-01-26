@@ -11,85 +11,83 @@
     ></the-search>
     <!-- 任务列表 -->
     <the-list
-      v-if="selfData.length"
-      :taskDeleteInternally="taskDeleteInternally"
       :taskStateInternally="taskStateInternally"
       :nodeKey="nodeKey"
       :props="selfProps"
       :data="data"
       @task-change="handleChangeTask"
       @task-delete="handleDeleteTask"
-    ></the-list>
-    <!-- 无数据 -->
-    <no-data v-else>
+    >
       <slot name="no-data"></slot>
-    </no-data>
+    </the-list>
+    <!-- 删除弹窗 -->
+    <the-delete></the-delete>
   </div>
 </template>
 
 <script>
 import TheSearch from "./components/TheSearch.vue";
-import NoData from "./components/NoData.vue";
 import TheList from "./components/TheList.vue";
+import TheDelete from "./components/TheDelete.vue";
 
 export default {
   name: "WlTodoList",
-  components: { TheSearch, NoData, TheList },
+  components: { TheSearch, TheList, TheDelete },
   props: {
     // 数据列表 ----------------------TheTask---------------
     data: {
       type: Array,
       default: () => {
         return [];
-      },
+      }
     },
     // props配置项
     props: Object,
     // node-key
     nodeKey: {
       type: String,
-      default: "id",
+      default: "id"
     },
     // 是否内部处理任务状态,true则内部改变task状态并emit到外部，false则外部处理
     taskStateInternally: {
       type: Boolean,
-      default: true,
-    },
-    // 是否内部处理任务删除,true则内部移除task节点并emit到外部，false则外部处理
-    taskDeleteInternally: {
-      type: Boolean,
-      default: true,
+      default: true
     },
     // 是否可搜索 --------------------- TheSearch------------
     filterable: {
       type: Boolean,
-      default: true,
+      default: true
     },
     // 是否允许创建新任务，必须开启filterable
     allowCreate: {
       type: Boolean,
-      default: true,
+      default: true
     },
     // placeholder
     placeholder: String,
     // 最大输入长度
-    maxlength: [Number, String],
+    maxlength: [Number, String]
   },
   data() {
     return {
-      searchKey: "", // 搜索或创建条目的值
+      searchKey: "" // 搜索或创建条目的值
     };
   },
   computed: {
     selfProps() {
       return {
         label: "label",
-        isDone: "isDone",
+        isDone: "isDone"
       };
     },
     selfData() {
       return this.data || [];
-    },
+    }
+  },
+  watch: {
+    searchKey(val) {
+      console.log(val, 1);
+    }
   },
   methods: {
     /**
@@ -113,7 +111,7 @@ export default {
      */
     handleDeleteTask(item) {
       this.$emit("task-delete", item);
-    },
-  },
+    }
+  }
 };
 </script>

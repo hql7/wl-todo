@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <todo-list :data="taskList" @create="handleCreateTask">
+    <todo-list :data="taskList" @task-create="handleCreateTask">
       <!-- 无数据-插槽 -->
       <template #no-data> 这里空空如也，快为我安排第一份工作任务吧！ </template>
     </todo-list>

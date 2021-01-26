@@ -4,11 +4,11 @@
       type="text"
       :value="key"
       autocomplete="off"
-      class="task-search-ipt"
       :maxlength="maxlength"
+      class="task-search-ipt"
       :placeholder="selfPlaceholder"
-      @change="searchChange"
       @keyup.enter="handleCreate"
+      @input="searchChange"
     />
   </div>
 </template>
@@ -16,41 +16,38 @@
 <script>
 export default {
   name: "TheSearch",
-  model: {
-    prop: "value",
-    event: "change",
-  },
   props: {
     placeholder: String,
     allowCreate: Boolean, // 允许创建条目
     maxlength: {
       type: [Number, String],
-      default: 200,
-    },
+      default: 200
+    }
   },
   data() {
     return {
-      key: "",
+      key: ""
     };
   },
   computed: {
     selfPlaceholder() {
       if (this.placeholder) return this.placeholder;
       let _placeholder = "请输入todo查询";
-      return this.allowCreate ? `${_placeholder}，或回车创建新条目` : _placeholder;
-    },
+      return this.allowCreate
+        ? `${_placeholder}，或回车创建新条目`
+        : _placeholder;
+    }
   },
   methods: {
     // 输入框change事件
     searchChange(e) {
-      this.key = e.target.value;
-      this.$emit("change", this.key);
+      this.$emit("input", e.target.value);
     },
     // 创建条目事件
-    handleCreate() {
+    handleCreate(e) {
       if (!this.allowCreate) return;
-      this.$emit("create", this.key);
-    },
-  },
+      this.$emit("create", e.target.value);
+    }
+  }
 };
 </script>
