@@ -1,0 +1,21 @@
+input {
+  font-family: "PingFang SC", "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
+    sans-serif;
+  margin: 0;
+  font-size: 100%;
+  outline: none;
+}
+ul {
+  list-style: none;
+}
+ul,
+li,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+i {
+  font-style: normal;
+  text-decoration: none;
+}
