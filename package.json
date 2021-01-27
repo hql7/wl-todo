@@ -2,11 +2,20 @@
   "name": "wl-todo",
   "version": "0.1.0",
   "private": true,
+  "author": "weilan<https://github.com/hql7>",
+  "main": "lib/wl-todo-list.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name wl-todo-list --dest lib ./src/pages/index.js",
     "lint": "vue-cli-service lint"
   },
+  "bugs": {
+    "url": "https://github.com/hql7/wl-todo/issues"
+  },
+  "homepage": "https://github.com/hql7/wl-todo/#readme",
+  "keyword": "todo todoList 看板",
+  "description": "一个简洁的任务看板",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11"

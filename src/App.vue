@@ -1,21 +1,22 @@
 <template>
   <div id="app">
-    <todo-list :data="taskList" @task-create="handleCreateTask">
+    <wl-todo-list
+      :data="taskList"
+      @task-create="handleCreateTask"
+      @task-change="handleChangeTask"
+      @task-delete="handleDeleteTask"
+    >
       <!-- 无数据-插槽 -->
       <template #no-data> 这里空空如也，快为我安排第一份工作任务吧！ </template>
-    </todo-list>
+    </wl-todo-list>
   </div>
 </template>
 
 <script>
-import TodoList from "./pages/todo-list";
 import { createUuid } from "./utils";
 
 export default {
   name: "App",
-  components: {
-    TodoList,
-  },
   data() {
     return {
       taskList: [
@@ -29,13 +30,32 @@ export default {
   methods: {
     /**
      * @name 创建任务事件
+     * @param {Striing} val label
      */
     handleCreateTask(val) {
+      // 同服务端交互后更新列表
       let item = {
         id: createUuid(),
         label: val,
       };
       this.taskList.unshift(item);
+    },
+    /**
+     * @name 改变任务完成状态
+     * @param {Object} item 任务信息
+     */
+    handleChangeTask(item) {
+      // 同服务端交互，如内部处理，提交成功保持静默，失败更新列表；如外部处理提交后更新列表
+      let targetTask = this.taskList.find((i) => i.id == item.id);
+      this.$set(targetTask, "isDone", !item.isDone);
+    },
+    /**
+     * @name 删除任务
+     * @param {Object} item 任务信息
+     */
+    handleDeleteTask(item) {
+      // 同服务端交互，如内部处理，提交成功保持静默，失败更新列表；如外部处理提交后更新列表
+      this.taskList = this.taskList.filter((i) => i.id != item.id);
     },
   },
 };
