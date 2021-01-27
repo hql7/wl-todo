@@ -2,6 +2,7 @@
   <div id="app">
     <wl-todo-list
       :data="taskList"
+      :confirm-options="confirmOptions"
       @task-create="handleCreateTask"
       @task-change="handleChangeTask"
       @task-delete="handleDeleteTask"
@@ -25,6 +26,9 @@ export default {
         { id: "12", label: "完成2021年第一篇技术文章", isDone: true },
         { id: "13", label: "通过淘系技术考核", isDone: false },
       ],
+      confirmOptions: {
+        message: "是否确认删除该任务？",
+      },
     };
   },
   methods: {

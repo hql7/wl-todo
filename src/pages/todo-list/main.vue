@@ -11,11 +11,12 @@
     ></the-input>
     <!-- 任务列表 -->
     <the-list
-      :taskStateInternally="taskStateInternally"
-      :nodeKey="nodeKey"
-      :props="selfProps"
       ref="the-list"
       :data="data"
+      :props="selfProps"
+      :nodeKey="nodeKey"
+      :confirm-options="confirmOptions"
+      :taskStateInternally="taskStateInternally"
       @task-change="handleChangeTask"
       @task-delete="handleDeleteTask"
     >
@@ -61,7 +62,7 @@ export default {
     // 最大输入长度
     maxlength: [Number, String],
     // 确认弹出框配置项 ------------------ MsgBox -------------
-    confirmOptions:Object
+    confirmOptions: Object,
   },
   data() {
     return {
@@ -107,3 +108,4 @@ export default {
 </script>
 
 <style src="./assets/css/index.min.css"></style>
+<style src="./assets/icon/iconfont.css"></style>

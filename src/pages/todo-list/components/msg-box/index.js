@@ -18,8 +18,9 @@ const MsgBox = function (options) {
     if (typeof options === 'string') {
       instance.message = options
     } else if (Object.prototype.toString.call(options) === "[object Object]") {
-      for (let i in options)
+      for (let i in options) {
         instance[i] = options[i]
+      }
     }
 
     document.body.appendChild(instance.$el);

@@ -1,7 +1,7 @@
 {
-  "name": "wl-todo",
-  "version": "0.1.0",
-  "private": true,
+  "name": "wl-todo-list",
+  "version": "0.1.2",
+  "private": false,
   "author": "weilan<https://github.com/hql7>",
   "main": "lib/wl-todo-list.umd.min.js",
   "scripts": {
